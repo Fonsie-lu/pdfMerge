@@ -8,6 +8,8 @@
   - If Execution Policy prevents script from running, execute the following console command first:
     - ``` Set-ExecutionPolicy -ExecutionPolicy Bypass ```
     - Prompt: "Yes to All"
+> **NOTE:** Admin Privileges and ExecutionPolicy is only used once, when executed for the first time.
+> After that, Script can be executed from Explorer via context menu entry "Run with PowerShell"
 
 # Configuration / Restrictions
 
