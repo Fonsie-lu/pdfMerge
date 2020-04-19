@@ -8,6 +8,7 @@ Install-Module PSWritePDF
 Import-Module PSWritePDF
 $rootpath = gci | Where-Object {$_.Extension -eq ".pdf" -and $_.Name -match $removeText}| Sort-Object -Property Name
 $i =0
+$resultFolder = "merged"
 clear
 
 #Generate merged PDF in Subfolders
@@ -22,12 +23,13 @@ foreach ($file in $rootpath) {
 }
   
 #Copy back latest PDF and cleanup Subfolders / PDF's
-$pdfPaths = gci -Directory
+$pdfPaths = gci -Directory -Exclude $resultFolder
+mkdir $resultFolder -Force
 foreach($pdfPath in $pdfPaths){
   cd $pdfPath.FullName
   $chosenPDFsrc = (gci $pdfPath.FullName | sort LastWriteTime | select -last 1) 
   $chosenPDFtrg = $chosenPDFsrc -replace '\d'
-  Move-Item $chosenPDFsrc ../$chosenPDFtrg -Force
+  Move-Item $chosenPDFsrc ../$resultFolder/$chosenPDFtrg -Force
   cd ..
   Remove-Item $pdfPath -Force -Recurse
   write-host `PDF generated: $chosenPDFtrg`
@@ -36,3 +38,4 @@ foreach($pdfPath in $pdfPaths){
 #Cleanup & Finish
 Set-ExecutionPolicy -ExecutionPolicy Undefined #if rerun, comment line
 write-host "done"
+explorer ./$resultFolder
