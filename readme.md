@@ -6,7 +6,8 @@
 - [ ] Change Directory in Console to where Script & PDF Files are
 - [ ] Run (F5)
   - If Execution Policy prevents script from running, execute the following console command first:
-    - Set-ExecutionPolicy -ExecutionPolicy Bypass
+    - ``` Set-ExecutionPolicy -ExecutionPolicy Bypass ```
+    - Prompt: "Yes to All"
 
 # Configuration / Restrictions
 
