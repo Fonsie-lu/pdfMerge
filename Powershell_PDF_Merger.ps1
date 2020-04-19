@@ -15,13 +15,12 @@ clear
 #Generate merged PDF in Subfolders
 foreach ($file in $rootpath) {
   $i++;
-  $j = $i-1;
   $groupDir = ( $file.Name.Split($separator)[$separatorIndex])
   mkdir $groupDir -Force > $null
   $targetFile = $file.DirectoryName + "\" + $groupDir + "\" + $file.Name
   Copy-Item $file.FullName $targetFile 
   $mergedPDF = $targetFile  -replace '\d','' -replace $removeText 
-  Merge-PDF -InputFile $mergedpdf$j, $targetFile -OutputFile $mergedPDF$i > $null
+  Merge-PDF -InputFile $mergedpdf$i-1, $targetFile -OutputFile $mergedPDF$i > $null
 }
   
 #Copy back latest PDF and cleanup Subfolders / PDF's
