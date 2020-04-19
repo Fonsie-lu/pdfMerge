@@ -19,3 +19,4 @@
   - Text to Remove from Filename
 - All Numbers in the Filename will be removed in the merged pdf
 - Merging is based on grouped Separator-Text at given Index and sorted by Filename (asc)
+- Script will overwrite Files if exists i.e. merged pdf files (no prompt)
