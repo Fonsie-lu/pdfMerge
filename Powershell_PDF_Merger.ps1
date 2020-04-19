@@ -28,12 +28,12 @@ foreach ($file in $pdf) {
 #Copy back latest PDF and cleanup Subfolders / PDF's
 foreach($mergePath in $pdfPath){
   cd $mergePath.FullName
-  $chosenPDF = (gci $mergePath.FullName | sort LastWriteTime | select -last 1) 
-  Copy-Item $chosenPDF ../ 
+  $chosenPDFtemp = (gci $mergePath.FullName | sort LastWriteTime | select -last 1) 
+  $chosenPDF = $chosenPDFtemp -replace '\d'
+  Copy-Item $chosenPDFtemp ../$chosenPDF 
   cd ..
   Remove-Item $mergePath -Force -Recurse
-  Move-Item $chosenPDF ($chosenPDF -replace '\d') -Force
-  write-host "PDF generated: "$($chosenPDF -replace '\d')
+  write-host `PDF generated: $chosenPDF`
 }
 
 #Cleanup & Finish
