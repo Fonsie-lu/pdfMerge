@@ -6,8 +6,6 @@ $removeText = "_KarteNr_"
 #Declare
 Install-Module PSWritePDF
 Import-Module PSWritePDF
-$ExecutionPolicy = Get-ExecutionPolicy
-Set-ExecutionPolicy -ExecutionPolicy Bypass
 $rootpath = gci | Where-Object {$_.Extension -eq ".pdf" -and $_.Name -match $removeText}| Sort-Object -Property Name
 $i =0
 clear
@@ -36,5 +34,5 @@ foreach($pdfPath in $pdfPaths){
 }
 
 #Cleanup & Finish
-Set-ExecutionPolicy -ExecutionPolicy $ExecutionPolicy
+Set-ExecutionPolicy -ExecutionPolicy Undefined #if rerun, comment line
 write-host "done"
