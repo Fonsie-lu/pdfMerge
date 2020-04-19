@@ -38,4 +38,4 @@ foreach($pdfPath in $pdfPaths){
 #Cleanup & Finish
 Set-ExecutionPolicy -ExecutionPolicy Undefined #if rerun, comment line
 write-host "done"
-explorer ./$resultFolder
+explorer .\$resultFolder
