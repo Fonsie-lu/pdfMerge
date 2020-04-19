@@ -1,6 +1,6 @@
-﻿#changeable Parameters
+﻿#Changeable Parameters
 $separator = "_"
-$separatorIndex = "3"
+$separatorIndex = 3
 $removeText = "_KarteNr_"
 
 #Declare
@@ -28,12 +28,12 @@ foreach ($file in $pdf) {
 #Copy back latest PDF and cleanup Subfolders / PDF's
 foreach($mergePath in $pdfPath){
   cd $mergePath.FullName
-  $chosenPDF = (gci $mergePath.FullName | sort LastWriteTime | select -last 1) -replace '\d'
+  $chosenPDF = (gci $mergePath.FullName | sort LastWriteTime | select -last 1) 
   Copy-Item $chosenPDF ../ 
   cd ..
   Remove-Item $mergePath -Force -Recurse
-  Move-Item $chosenPDF -Force
-  write-host "PDF generated: "$chosenPDF
+  Move-Item $chosenPDF ($chosenPDF -replace '\d') -Force
+  write-host "PDF generated: "$($chosenPDF -replace '\d')
 }
 
 #Cleanup & Finish
