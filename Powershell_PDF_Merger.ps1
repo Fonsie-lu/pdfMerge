@@ -7,19 +7,20 @@ $removeText = "_KarteNr_"
 Install-Module PSWritePDF
 Import-Module PSWritePDF
 $rootpath = gci | Where-Object {$_.Extension -eq ".pdf" -and $_.Name -match $removeText}| Sort-Object -Property Name
-$i =0
+$current = 1
 $resultFolder = "merged"
 clear
 
 #Generate merged PDF in Subfolders
 foreach ($file in $rootpath) {
-  $i++;
+  $prev = $current
+  $current++;
   $groupDir = ( $file.Name.Split($separator)[$separatorIndex])
   mkdir $groupDir -Force > $null
   $targetFile = $file.DirectoryName + "\" + $groupDir + "\" + $file.Name
   Copy-Item $file.FullName $targetFile 
   $mergedPDF = $targetFile  -replace '\d','' -replace $removeText 
-  Merge-PDF -InputFile $mergedpdf$i-1, $targetFile -OutputFile $mergedPDF$i > $null
+  Merge-PDF -InputFile $mergedpdf$prev, $targetFile -OutputFile $mergedPDF$current > $null
 }
   
 #Copy back latest PDF and cleanup Subfolders / PDF's
