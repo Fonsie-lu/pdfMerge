@@ -5,7 +5,8 @@
 - [ ] Open Script in Powershell (Ctrl + O)
 - [ ] Change Directory in Console to where Script & PDF Files are
 - [ ] Run (F5)
-- [ ] Accept Promt 2x "Yes to All"
+  - If Execution Policy prevents script from running, execute the following console command first:
+    - Set-ExecutionPolicy -ExecutionPolicy Bypass
 
 # Configuration / Restrictions
 
@@ -13,5 +14,5 @@
   - Separator
   - Separator Index
   - Text to Remove from Filename
-- All Numbers in the Filename will be lost
+- All Numbers in the Filename will be removed in the merged pdf
 - Merging is based on grouped Separator-Text at given Index and sorted by Filename (asc)
