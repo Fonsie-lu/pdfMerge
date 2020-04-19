@@ -1,11 +1,11 @@
 # Run
 
 - [ ] place script in the folder, where all the pdf's are (do not use subfolders)
-- [ ] Run PowerShell ISE as Administrator (Need to install / import Moudles)
-- [ ] Open Script in Powershell
+- [ ] Run PowerShell ISE as Administrator (Need to install / import Modules)
+- [ ] Open Script in Powershell (Ctrl + O)
 - [ ] Change Directory in Console to where Script & PDF Files are
 - [ ] Run (F5)
-- [ ] Accept Promt 2x Yes to All
+- [ ] Accept Promt 2x "Yes to All"
 
 # Configuration / Restrictions
 
