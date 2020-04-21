@@ -4,7 +4,7 @@ $separatorIndex = 3
 #$removeText = "_KarteNr_"
 
 #Declare
-Install-Module PSWritePDF
+Install-Module PSWritePDF -Force
 Import-Module PSWritePDF
 $rootpath = gci | Where-Object {$_.Extension -eq ".pdf"}| Sort-Object -Property Name
 $current = 1
