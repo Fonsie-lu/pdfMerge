@@ -1,12 +1,12 @@
 ﻿#Changeable Parameters
 $separator = "_"
 $separatorIndex = 3
-$removeText = "_KarteNr_"
+#$removeText = "_KarteNr_"
 
 #Declare
 Install-Module PSWritePDF
 Import-Module PSWritePDF
-$rootpath = gci | Where-Object {$_.Extension -eq ".pdf" -and $_.Name -match $removeText}| Sort-Object -Property Name
+$rootpath = gci | Where-Object {$_.Extension -eq ".pdf"}| Sort-Object -Property Name
 $current = 1
 $resultFolder = "merged"
 clear
@@ -19,7 +19,7 @@ foreach ($file in $rootpath) {
   mkdir $groupDir -Force > $null
   $targetFile = $file.DirectoryName + "\" + $groupDir + "\" + $file.Name
   Copy-Item $file.FullName $targetFile 
-  $mergedPDF = $targetFile  -replace '\d','' -replace $removeText 
+  $mergedPDF = $targetFile  -replace '\d','' #-replace $removeText 
   Merge-PDF -InputFile $mergedpdf$prev, $targetFile -OutputFile $mergedPDF$current > $null
 }
   
